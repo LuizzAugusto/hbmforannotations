@@ -1,0 +1,1 @@
+export { xml2js } from "https://deno.land/x/xml2js@1.0.0/mod.ts"
