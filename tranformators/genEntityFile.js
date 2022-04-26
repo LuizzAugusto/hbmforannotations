@@ -46,8 +46,8 @@ export function genEntityFile(obj, options = {}) {
       text += `\n${spaces}var ${attributes.name}: ${propType}? = null`
     }
     else if (name === "composite-id") {
-    const lastIndexOfDot = attributes.name.lastIndexOf(".")
-    const className = attributes.name.slice(lastIndexOfDot + 1)
+    const lastIndexOfDot = attributes.class.lastIndexOf(".")
+    const className = attributes.class.slice(lastIndexOfDot + 1)
       genCompositeIdFile(node, options)
       text += `\n${spaces}@EmbeddedId`
       text += `\n${spaces}var ${attributes.name}: ${className}? = null`
