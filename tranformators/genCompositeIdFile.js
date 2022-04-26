@@ -13,8 +13,8 @@ export function genCompositeIdFile(obj, { spaces = "    ", pkg = undefined } = {
     throw Error("Just spaces are permitted.")
   }
 
-  const lastIndexOfDot = obj.attributes.name.lastIndexOf(".")
-  const className = obj.attributes.name.slice(lastIndexOfDot + 1)
+  const lastIndexOfDot = obj.attributes.class.lastIndexOf(".")
+  const className = obj.attributes.class.slice(lastIndexOfDot + 1)
 
   if (pkg) {
     text += `package ${pkg}\n\n`
