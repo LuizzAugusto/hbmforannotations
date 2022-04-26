@@ -1,7 +1,6 @@
 // @ts-check
 import { genCompositeIdFile } from "./genCompositeIdFile.js"
 import { genManyToOne } from "./genManyToOne.js"
-import { genOneToOne } from "./genOneToOne.js"
 import { writeFile } from "../utils/writeFile.js"
 /**
  * 
@@ -56,7 +55,7 @@ export function genEntityFile(obj, options = {}) {
       text += genManyToOne(node, options)
     }
     else if (name === "one-to-one") {
-      text += genOneToOne(node, options)
+      text += genManyToOne(node, options)
     }
 
     text += "\n"
