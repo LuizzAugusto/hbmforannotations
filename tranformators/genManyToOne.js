@@ -17,6 +17,7 @@ export function genManyToOne(obj, { spaces = "    " } = {}) {
     if (element.name === "column")
       text += `\n${spaces}@JoinColumn(name = ${element.attributes.name}, insertable = false, updatable = false)`
 
+  text += `\n${spaces}@JsonBackReference`
   text += `\n${spaces}var ${obj.attributes.name.replace("Hibernate", "")}: ${className}? = null`
   
   return text
