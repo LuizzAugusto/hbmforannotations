@@ -35,7 +35,7 @@ export function genCompositeIdFile(obj, options = {}) {
     if (name === "key-property") {
       const propType  = attributes.type[0].toLocaleUpperCase() + attributes.type.slice(1)
         
-      text += `\n${spaces}@Column(${attributes.column}${attributes["not-null"] ? ", nullable = false" : ""})`
+      text += `\n${spaces}@Column(name = "${attributes.column}"${attributes["not-null"] ? ", nullable = false" : ""})`
       text += `\n${spaces}var ${attributes.name}: ${propType}? = null`
     }
     else if (name === "key-many-to-one") {
