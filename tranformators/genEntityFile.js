@@ -5,9 +5,10 @@ import { genOneToOne } from "./genOneToOne.js"
 /**
  * 
  * @param {import("./types.d.ts").HbmEntityType} obj
- * @param {{spaces?: string, pkg?: string}|undefined} options
+ * @param {import("./types.d.ts").OptionsTypes|undefined} options
  */
-export function genEntityFile(obj, { spaces = "    ", pkg = undefined } = {}) {
+export function genEntityFile(obj, options = {}) {
+  const { spaces = "    ", pkg = undefined } = options
   let text = ""
 
   if (spaces.replaceAll(" ", "") !== "") {
@@ -20,6 +21,8 @@ export function genEntityFile(obj, { spaces = "    ", pkg = undefined } = {}) {
   if (pkg) {
     text += `package ${pkg}\n\n`
   }
+  
+  text += `import javax.persistence.*\n\n`
 
   text += `@Entity(name = ${className})`
   text += `\n@Table(name = ${obj.attributes.table})`
@@ -44,15 +47,15 @@ export function genEntityFile(obj, { spaces = "    ", pkg = undefined } = {}) {
     else if (name === "composite-id") {
     const lastIndexOfDot = attributes.name.lastIndexOf(".")
     const className = attributes.name.slice(lastIndexOfDot + 1)
-      // `${spaces}${genCompositeIdFile(node, { spaces })}`
+      // `${spaces}${genCompositeIdFile(node, options)}`
       text += `${spaces}\n@EmbeddedId`
       text += `${spaces}\nvar ${attributes.name}: ${className}? = null`
     }
     else if (name === "many-to-one") {
-      text += genManyToOne(node, { spaces })
+      text += genManyToOne(node, options)
     }
     else if (name === "one-to-one") {
-      text += genOneToOne(node, { spaces })
+      text += genOneToOne(node, options)
     }
 
     text += "\n"

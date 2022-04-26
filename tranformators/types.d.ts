@@ -1,3 +1,5 @@
+export type OptionsTypes = { spaces?: string, pkg?: string }
+
 export type ColumnTypes = "string"|"boolean"|"integer"|"double"|"long"
 
 export type ElementTypes = HbmPropertyType|HbmIdType|HbmManyToOneType|HbmOneToOneType|HbmCompositeIdType

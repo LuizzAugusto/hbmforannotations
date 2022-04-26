@@ -2,9 +2,9 @@
 /**
  * 
  * @param {import("./types.d.ts").HbmCompositeIdType} obj
- * @param {{spaces?: string}|undefined} options
+ * @param {import("./types.d.ts").OptionsTypes|undefined} options
  */
-export function genCompositeIdFile(obj, { spaces = "    " } = {}) {
+export function genCompositeIdFile(obj, { spaces = "    ", pkg = undefined } = {}) {
   let text = ""
 
   if (spaces.replaceAll(" ", "") !== "") {
@@ -13,6 +13,13 @@ export function genCompositeIdFile(obj, { spaces = "    " } = {}) {
 
   const lastIndexOfDot = obj.attributes.name.lastIndexOf(".")
   const className = obj.attributes.name.slice(lastIndexOfDot + 1)
+
+  if (pkg) {
+    text += `package ${pkg}\n\n`
+  }
+
+  text += `import lombok.EqualsAndHashCode\n\n`
+  text += `import javax.persistence.*\n\n`
 
   text += `@Embeddable`
   text += `\n@EqualsAndHashCode`
