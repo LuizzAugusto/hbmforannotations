@@ -1,4 +1,5 @@
 // @ts-check
+import { genManyToOne } from "./genManyToOne.js"
 import { writeFile } from "../utils/writeFile.js"
 
 /**
@@ -6,8 +7,9 @@ import { writeFile } from "../utils/writeFile.js"
  * @param {import("./types.d.ts").HbmCompositeIdType} obj
  * @param {import("./types.d.ts").OptionsTypes|undefined} options
  */
-export function genCompositeIdFile(obj, { spaces = "    ", pkg = undefined } = {}) {
+export function genCompositeIdFile(obj, options = {}) {
   let text = ""
+  const { spaces = "    ", pkg = undefined } = options
 
   if (spaces.replaceAll(" ", "") !== "") {
     throw Error("Just spaces are permitted.")
@@ -35,6 +37,9 @@ export function genCompositeIdFile(obj, { spaces = "    ", pkg = undefined } = {
         
       text += `\n${spaces}@Column(${attributes.column}${attributes["not-null"] ? ", nullable = false" : ""})`
       text += `\n${spaces}var ${attributes.name}: ${propType}? = null`
+    }
+    else if (name === "key-many-to-one") {
+      text += genManyToOne(node, options)
     }
     else {
       console.log(name)

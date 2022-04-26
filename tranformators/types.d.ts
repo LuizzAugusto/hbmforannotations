@@ -41,15 +41,27 @@ export type HbmOneToOneType = {
   },
 }
 
+export type HbmKeyTypes = HbmKeyPropertyType|HbmKeyManyToOneType
+
 export type HbmKeyPropertyType = {
   name: "key-property",
   attributes: HbmPropertyAtrributesType,
 }
 
+export type HbmKeyManyToOneType = {
+  name: "key-many-to-one",
+  attributes: {
+    name: string,
+    column: string,
+    class: string,
+    elements: ({ name: "column", attributes: { name: string } })[]
+  },
+}
+
 export type HbmCompositeIdType = {
   name: "composite-id",
   attributes: { name: string, class: string, },
-  elements: HbmKeyPropertyType[]
+  elements: HbmKeyTypes[]
 }
 
 export type HbmEntityType = {

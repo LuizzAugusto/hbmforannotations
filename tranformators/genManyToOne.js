@@ -1,7 +1,7 @@
 // @ts-check
 /**
  * 
- * @param {import("./types.d.ts").HbmManyToOneType} obj
+ * @param {import("./types.d.ts").HbmManyToOneType|import("./types.d.ts").HbmKeyManyToOneType} obj
  * @param {{ spaces?: string }} options
  * @returns {string}
  */
