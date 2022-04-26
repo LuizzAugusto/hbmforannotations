@@ -33,8 +33,8 @@ export function genCompositeIdFile(obj, { spaces = "    ", pkg = undefined } = {
     if (name === "key-property") {
       const propType  = attributes.type[0].toLocaleUpperCase() + attributes.type.slice(1)
         
-      text += `${spaces}\n@Column(${attributes.column}${attributes["not-null"] ? ", nullable = false" : ""})`
-      text += `${spaces}\nvar ${attributes.name}: ${propType}? = null`
+      text += `\n${spaces}@Column(${attributes.column}${attributes["not-null"] ? ", nullable = false" : ""})`
+      text += `\n${spaces}var ${attributes.name}: ${propType}? = null`
     }
     else {
       console.log(name)

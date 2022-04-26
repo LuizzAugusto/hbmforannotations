@@ -35,22 +35,22 @@ export function genEntityFile(obj, options = {}) {
     if (name === "id") {
       const propType  = attributes.type[0].toLocaleUpperCase() + attributes.type.slice(1)
         
-      text += `${spaces}\n@Id`
-      text += `${spaces}\n@Column(${attributes.column}${attributes["not-null"] ? ", nullable = false" : ""})`
-      text += `${spaces}\nvar ${attributes.name}: ${propType}? = null`
+      text += `\n${spaces}@Id`
+      text += `\n${spaces}@Column(${attributes.column}${attributes["not-null"] ? ", nullable = false" : ""})`
+      text += `\n${spaces}var ${attributes.name}: ${propType}? = null`
     }
     else if (name === "property") {
       const propType  = attributes.type[0].toLocaleUpperCase() + attributes.type.slice(1)
       
-      text += `${spaces}\n@Column(${attributes.column}${attributes["not-null"] ? ", nullable = false" : ""})`
-      text += `${spaces}\nvar ${attributes.name}: ${propType}? = null`
+      text += `\n${spaces}@Column(${attributes.column}${attributes["not-null"] ? ", nullable = false" : ""})`
+      text += `\n${spaces}var ${attributes.name}: ${propType}? = null`
     }
     else if (name === "composite-id") {
     const lastIndexOfDot = attributes.name.lastIndexOf(".")
     const className = attributes.name.slice(lastIndexOfDot + 1)
       genCompositeIdFile(node, options)
-      text += `${spaces}\n@EmbeddedId`
-      text += `${spaces}\nvar ${attributes.name}: ${className}? = null`
+      text += `\n${spaces}@EmbeddedId`
+      text += `\n${spaces}var ${attributes.name}: ${className}? = null`
     }
     else if (name === "many-to-one") {
       text += genManyToOne(node, options)

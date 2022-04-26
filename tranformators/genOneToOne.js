@@ -11,13 +11,13 @@ export function genOneToOne(obj, { spaces = "    " } = {}) {
   const className = obj.attributes.class.slice(lastIndexOfDot + 1)
   let text = ""
 
-  text += `${spaces}\n@OneToOne(fetch = FetchType.Lazy)`
+  text += `\n${spaces}@OneToOne(fetch = FetchType.Lazy)`
 
   for (const element of elements)
     if (element.name === "column")
-      text += `${spaces}\n@JoinColumn(name = ${element.attributes.name}, insertable = false, updatable = false)`
+      text += `\n${spaces}@JoinColumn(name = ${element.attributes.name}, insertable = false, updatable = false)`
 
-  text += `${spaces}\nvar ${obj.attributes.name.replace("Hibernate", "")}: ${className}? = null`
+  text += `\n${spaces}var ${obj.attributes.name.replace("Hibernate", "")}: ${className}? = null`
   
   return text
 }
