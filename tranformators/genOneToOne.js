@@ -2,7 +2,7 @@
 /**
  * 
  * @param {import("./types.d.ts").HbmOneToOneType} obj
- * @param {{ spaces?: string }} options
+ * @param {import("./types.d.ts").OptionsTypes} options
  * @returns {string}
  */
 export function genOneToOne(obj, { spaces = "    " } = {}) {

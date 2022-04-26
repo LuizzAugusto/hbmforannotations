@@ -2,7 +2,7 @@
 /**
  * 
  * @param {import("./types.d.ts").HbmManyToOneType|import("./types.d.ts").HbmKeyManyToOneType} obj
- * @param {{ spaces?: string }} options
+ * @param {import("./types.d.ts").OptionsTypes} options
  * @returns {string}
  */
 export function genManyToOne(obj, { spaces = "    " } = {}) {
