@@ -2,6 +2,7 @@
 import { genCompositeIdFile } from "./genCompositeIdFile.js"
 import { genManyToOne } from "./genManyToOne.js"
 import { genOneToOne } from "./genOneToOne.js"
+import { writeFile } from "../utils/writeFile.js"
 /**
  * 
  * @param {import("./types.d.ts").HbmEntityType} obj
@@ -47,7 +48,7 @@ export function genEntityFile(obj, options = {}) {
     else if (name === "composite-id") {
     const lastIndexOfDot = attributes.name.lastIndexOf(".")
     const className = attributes.name.slice(lastIndexOfDot + 1)
-      // `${spaces}${genCompositeIdFile(node, options)}`
+      genCompositeIdFile(node, options)
       text += `${spaces}\n@EmbeddedId`
       text += `${spaces}\nvar ${attributes.name}: ${className}? = null`
     }
@@ -63,5 +64,5 @@ export function genEntityFile(obj, options = {}) {
 
   text += "}"
 
-  return text
+  writeFile(className, text)
 }

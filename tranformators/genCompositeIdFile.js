@@ -1,4 +1,6 @@
 // @ts-check
+import { writeFile } from "../utils/writeFile.js"
+
 /**
  * 
  * @param {import("./types.d.ts").HbmCompositeIdType} obj
@@ -43,5 +45,5 @@ export function genCompositeIdFile(obj, { spaces = "    ", pkg = undefined } = {
 
   text += "}"
 
-  return text
+  writeFile(className, text)
 }

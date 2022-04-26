@@ -23,14 +23,7 @@ const text = await Deno.readTextFile(output)
  * @type {Record<string, any>}
  */
 const obj = xml2js(text, {})
-/**
- * 
- * @type {string}
- */
-let file = ""
 
 for (const node of obj.elements)
   if (node.type === "element")
-    file = genEntityFile(node.elements[0], { spaces: "  ", pkg })
-    
-console.log(file)
+    genEntityFile(node.elements[0], { spaces: "  ", pkg })
